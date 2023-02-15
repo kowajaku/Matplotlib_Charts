@@ -1,0 +1,49 @@
+w python consoli
+
+f = open("dane.txt", "a")
+f.write(signal_input(15))
+
+
+
+
+python main.py | egrep -o "[0-9]+[.][0-9]+"
+python main.py | egrep -o "[0-9]+[.][0-9]+" >> data.csv
+
+
+import matplotlib.pyplot as plt
+import csv
+
+
+def signal_input(napiecie):
+    
+    print(f'Napiecie: {napiecie}')  
+
+
+if __name__ == '__main__':
+    napiecie=15.83
+    for i in range(100):
+        signal_input(napiecie)
+        # with open('dane.txt', 'a') as f:
+        #     f.write(signal_input(napiecie))
+
+    x = []
+    y = []
+
+
+    with open('data.csv', 'r') as csvfile:
+        plots = csv.reader(csvfile, delimiter=',')
+
+        for row in plots:
+            x.append(row[0])
+            y.append(row[1])
+
+    plt.scatter(x, y, color='g', s=100)
+    plt.xticks(rotation=25)
+    plt.xlabel('Numer pomiaru')
+    plt.ylabel('Voltage level')
+    plt.title('Voltage level', fontsize=20)
+    plt.show()
+
+
+
+
